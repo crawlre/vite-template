@@ -1,0 +1,20 @@
+@use "sass:math";
+
+@function fluid($min, $max, $minViewport: 375, $maxViewport: 1440) {
+  $base: 16;
+
+  $vwScale: math.div($max - $min, $maxViewport - $minViewport);
+  $baseOffset: $min - $minViewport * $vwScale;
+
+  $minRem: math.div($min, $base) * 1rem;
+  $maxRem: math.div($max, $base) * 1rem;
+  $baseOffsetRem: math.div($baseOffset, $base) * 1rem;
+
+  $vwScaleVw: ($vwScale * 100) * 1vw;
+
+  @return clamp(
+    #{$minRem},
+    calc(#{$baseOffsetRem} + #{$vwScaleVw}),
+    #{$maxRem}
+  );
+}
