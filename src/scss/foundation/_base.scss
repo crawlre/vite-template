@@ -1,5 +1,6 @@
 @use '../global' as *;
 
 body {
-  background-color: pink;
+  font-family: $font-family-base;
+  color: $color-font-base;
 }
